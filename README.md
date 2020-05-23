@@ -88,5 +88,52 @@ Non-trainable params: 2,880
 ```
 
 ### Training
+To perfrom training, all we have to do is execute the train script.
+Before executing, you need to change following lines in `train.py` file
+line 15-26 in `train.py`
+```
+########################################
+# CONFIGURE THESE AS PER YOUR REQUIREMENT
+dataset_dir = './dataset'   # change as per your dataset directory
+classes = 5                 # change as per no. of classes in your dataset
+img_w = 96                  # image width you want to feed to network.
+img_h = 96                  # image height you want to feed to network. 
+img_d = 3
+
+BATCH_SIZE = 32             # Batch size, you can keep it as 32 for starters. No need to change
+INIT_LR = 1e-3              # learning rate, 0.0001 (you can keep it as this only)
+EPOCHS = 5                  # number of epochs to train, you can keep it as it is for starters.
+########################################
+```
+Once you have made the changes, you can initiate the training using the command
+```
+python train.py
+```
+The script first read all the paths of the images and put it in a list.
+Then it loads all the images present in the above created list of image files and
+extract the label for each image from its filename.
+To convert string label into one hot encoding form, `LabelBinarizer` class is used present
+in `sklearn.preprocessing` package.
+These two arrays i.e. data (containing all images) and labels (containing label for each image)
+are then split into a train, test set using `train_test_split` method of `sklearn.model_processing`
+Using keras API, a model is compiled with Adam optimizer and
+training is initiated using `fit_generator` api
+Once the training is complete, model is dumped in the same directory with the name `first_model.h5`
+which can be loaded afterwads and used for inferencing (`classify.py` script does that)
 
 ### Inference
+To perform inference, you can execute the `classify.py` script
+before executing, you need to change the following lines in `classify.py`
+Line-8 in `classify.py`
+```
+filename = './image_to_be_classified.jpg'
+```
+Once you have made the change, you can perform classification using the command
+```
+python classify.py
+```
+The script first loads the image, resizes it to what model is expecting, perform 
+inference, as in doing a forward pass using the `predict` api of keras. 
+it will give us a vector of probabilites for each class. We fetch the index of class
+having maximum probability score using `numpy.argmax` and that becomes our predicted label/class.
+Next, we display the image along with the predicted label for visual purposes
