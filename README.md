@@ -144,13 +144,16 @@ having maximum probability score using `numpy.argmax` and that becomes our predi
 Next, we display the image along with the predicted label for visual purposes
 
 ### For curious readers, intution behind choosing categorical crossentropy loss during training
-Say we have classification problem with 3 classes: cat, dog, bird
+Say we have classification problem with 3 classes: [cat, dog, bird]
 <br />
 
-Sample 1:
-for a sample image of cat, our ground truth vector will look like [1, 0, 0]
-Now, let’s assume vector our model predicted for that image is [0.6, 0.3, 0.1] 
-<br />
+             Ground Truth vector     Model Prediction
+Cat image 1:     [1, 0, 0]            [0.6, 0.3, 0.1]
+Cat image 2:     [1, 0, 0]            [0.2, 0.7, 0.1]
+Cat image 3:     [1, 0, 0]            [1, 0, 0]
+
+In image 1, model predicted cat with probability 0.6
+In image 2, model predicted cat with probability 0.2
 
 Sample 2:
 for a sample image of cat, our ground truth vector will look like [1, 0, 0]
