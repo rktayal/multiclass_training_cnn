@@ -233,7 +233,7 @@ The sum of all values will be 1. <br />
 Softmax function will supress values which are below the maximum value
 as mentioned above. <br />
 [2.4, 1.0, 4.5] ----Softmax function----> [0.12, 0.02, 0.86]
-hence output label becomes bird since index 3 has max probability. <br />
+hence output label becomes bird since index 3 has max probability.
 
 How it is calculated?
 [2.4, 1.0, 4.5] --> [y1, y2, y3]
@@ -241,7 +241,7 @@ y1 = e^2.4 / (e^2.4 + e^1.0 + e^4.5) = 0.12
 y2 = e^1.0 / (e^2.4 + e^1.0 + e^4.5) = 0.02
 y3 = e^4.5 / (e^2.4 + e^1.0 + e^4.5) = 0.86
 
-In general, softmax func = e^x / (summation of e^x) <br />
+In general, softmax func = e^x / (summation of e^x)
 where x is each element in vector
 ```
 
