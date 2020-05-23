@@ -142,7 +142,7 @@ it will give us a vector of probabilites for each class. We fetch the index of c
 having maximum probability score using `numpy.argmax` and that becomes our predicted label/class.
 Next, we display the image along with the predicted label for visual purposes
 
-### Intution behind choosing categorical crossentropy loss during training
+### For curious readers, intution behind choosing categorical crossentropy loss during training
 Say we have classification problem with 3 classes: cat, dog, bird
 <br /><br />
 
@@ -161,25 +161,25 @@ for another sample image of cat, our ground truth vector will look like [1, 0, 0
 Now, let’s assume the vector our model predicted for that image is [1, 0, 0] 
 <br /><br />
 
-Let's take a function: 
-L(y, y´) = -∑ y*log(y´) (summation for all elements in vector, in our case 3)
-where y is ground truth vector and y´ is predicted vector
 
-Requirement
+#### Requirement
 We want to penalise our model more in second sample since the predicted probability 
 for that class (0.2) is way lesser as compared to the prediction in first sample (0.6)
 hence loss should be more in case of sample 2 as compared to loss value in case of sample 1
+<br /><br />
 
 In case of sample 3, since our model predicted exactly correct, we don’t want to penalise 
 our model at all.  Hence loss should be zero in this case.
+<br /><br />
 
 Therefore, a cross-entropy of 0.0 when training a model indicates that the predicted class 
 probabilities are identical to the probabilities in the training dataset, e.g. zero loss.
+<br /><br />
 
-Categorical cross entropy serves our above requirements. 
-Let's consider categorical cross-entropy function:
-L(y, y´) = -∑ y*log(y´) (summation for all elements in vector, in our case 3)
-where y is ground truth vector and y´ is predicted vector
+Categorical cross entropy serves our above requirements. <br />
+Let's consider categorical cross-entropy function: <br />
+L(y, y´) = -∑ y * log(y´) (summation for all elements in vector, in our case 3) <br />
+where y is ground truth vector and y´ is predicted vector <br />
 
 ```
 Calclulating L(y,y´) for Sample 1:
