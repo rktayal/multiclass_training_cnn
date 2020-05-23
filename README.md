@@ -121,6 +121,72 @@ training is initiated using `fit_generator` api
 Once the training is complete, model is dumped in the same directory with the name `first_model.h5`
 which can be loaded afterwads and used for inferencing (`classify.py` script does that)
 
+Why we have used categorical cross-entropy as our loss function for this problem?
+Input: two vectors usually one is ground truth vector and other is predicted vector from network.
+Outputs: Real number i.e. cross-entropy which we will use as our loss value
+
+Intution behind categorical crossentropy
+Say we have classification problem with 3 classes: cat, dog, bird
+
+Sample 1:
+for a sample image of cat, our ground truth vector will look like [1, 0, 0]
+Now, let’s assume vector our model predicted for that image is [0.6, 0.3, 0.1] 
+
+Sample 2:
+for a sample image of cat, our ground truth vector will look like [1, 0, 0]
+Now, let’s assume vector our model predicted for that image is [0.2, 0.7, 0.1] 
+
+Sample 3
+for another sample image of cat, our ground truth vector will look like [1, 0, 0]
+Now, let’s assume the vector our model predicted for that image is [1, 0, 0] 
+
+Let's take a function: 
+L(y, y´) = -∑ y*log(y´) (summation for all elements in vector, in our case 3)
+where y is ground truth vector and y´ is predicted vector
+
+Requirement
+We want to penalise our model more in second sample since the predicted probability 
+for that class (0.2) is way lesser as compared to the prediction in first sample (0.6)
+hence loss should be more in case of sample 2 as compared to loss value in case of sample 1
+
+In case of sample 3, since our model predicted exactly correct, we don’t want to penalise 
+our model at all.  Hence loss should be zero in this case.
+
+Therefore, a cross-entropy of 0.0 when training a model indicates that the predicted class 
+probabilities are identical to the probabilities in the training dataset, e.g. zero loss.
+
+Categorical cross entropy serves our above requirements. 
+Let's consider categorical cross-entropy function:
+L(y, y´) = -∑ y*log(y´) (summation for all elements in vector, in our case 3)
+where y is ground truth vector and y´ is predicted vector
+
+```
+Calclulating L(y,y´) for Sample 1:
+y = [1, 0, 0]
+y´= [0.6, 0.3, 0.1]
+L(y, y´) = - (1 * log(0.6) + 0 * log(0.3) + 0 * log(0.1))
+L(y, y´) = - (-0.593 + 0 + 0)
+L(y, y´) = 0.510
+
+Calclulating L(y,y´) for Sample 2:
+y = [1, 0, 0]
+y´= [0.2, 0.7, 0.1]
+L(y, y´) = - (1 * log(0.2) + 0 * log(0.7) + 0 * log(0.1))
+L(y, y´) = - (-1.609 + 0 + 0)
+L(y, y´) = 1.609
+
+Calclulating L(y,y´) for Sample 3:
+y = [1, 0, 0]
+y´= [1, 0, 0]
+L(y, y´) = - (1 * log(1) + 0 * log(0) + 0 * log(0))
+L(y, y´) = - (0 + 0 + 0)
+L(y, y´) = 0
+
+Therefore above function serves our purpose of penalizing bad predictions more.
+If the probability associated with the true class is 1.0, we need its loss to be zero. 
+Conversely, if that probability is low, say, 0.01, we need its loss to be HUGE!
+```
+
 ### Inference
 To perform inference, you can execute the `classify.py` script
 before executing, you need to change the following lines in `classify.py`
