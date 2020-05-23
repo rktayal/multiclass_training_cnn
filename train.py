@@ -3,8 +3,6 @@ import cv2
 import pickle
 import random
 import numpy as np
-from keras import models
-from keras import layers
 from keras.preprocessing.image import ImageDataGenerator
 # from keras.preprocessing.image import img_to_array
 from keras.optimizers import Adam
@@ -26,6 +24,7 @@ BATCH_SIZE = 32
 INIT_LR = 1e-3
 EPOCHS = 5 
 ########################################
+
 
 def read_image_paths():
     # Read the image paths and their corresponding labels
@@ -81,8 +80,9 @@ def start_training(data, labels, model):
     # print('shape X_test', X_test.shape, X_test.ndim)
 
     aug = ImageDataGenerator(rotation_range=25, width_shift_range=0.1,
-                             height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
-                             horizontal_flip=True, fill_mode='nearest')
+                             height_shift_range=0.1, shear_range=0.2,
+                             zoom_range=0.2, horizontal_flip=True,
+                             fill_mode='nearest')
 
     print('compiling model...')
     opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
