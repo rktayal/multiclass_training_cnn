@@ -1,5 +1,6 @@
 # multiclass_training_cnn
-The repo has source code for CNN network and initiating the training on any dataset for multi class classification problem. 
+The repo has source code and serves as a guide on how to train your own CNN using Keras and deep learning. 
+The source code can be extended to any CNN network and perform training on any dataset for multi class classification problem. 
 
 The repo can act as a guide for someone who wants to implement a CNN classifier from scratch
 The repo has 3 source code files:
