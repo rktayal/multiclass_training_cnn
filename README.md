@@ -125,20 +125,41 @@ Why we have used categorical cross-entropy as our loss function for this problem
 Input: two vectors usually one is ground truth vector and other is predicted vector from network.
 Outputs: Real number i.e. cross-entropy which we will use as our loss value
 
-Intution behind categorical crossentropy
+### Inference
+To perform inference, you can execute the `classify.py` script
+before executing, you need to change the following lines in `classify.py`
+Line-8 in `classify.py`
+```
+filename = './image_to_be_classified.jpg'
+```
+Once you have made the change, you can perform classification using the command
+```
+python classify.py
+```
+The script first loads the image, resizes it to what model is expecting, perform 
+inference, as in doing a forward pass using the `predict` api of keras. 
+it will give us a vector of probabilites for each class. We fetch the index of class
+having maximum probability score using `numpy.argmax` and that becomes our predicted label/class.
+Next, we display the image along with the predicted label for visual purposes
+
+### Intution behind choosing categorical crossentropy loss during training
 Say we have classification problem with 3 classes: cat, dog, bird
+<br /><br />
 
 Sample 1:
 for a sample image of cat, our ground truth vector will look like [1, 0, 0]
 Now, let’s assume vector our model predicted for that image is [0.6, 0.3, 0.1] 
+<br /><br />
 
 Sample 2:
 for a sample image of cat, our ground truth vector will look like [1, 0, 0]
 Now, let’s assume vector our model predicted for that image is [0.2, 0.7, 0.1] 
+<br /><br />
 
 Sample 3
 for another sample image of cat, our ground truth vector will look like [1, 0, 0]
 Now, let’s assume the vector our model predicted for that image is [1, 0, 0] 
+<br /><br />
 
 Let's take a function: 
 L(y, y´) = -∑ y*log(y´) (summation for all elements in vector, in our case 3)
@@ -182,24 +203,8 @@ L(y, y´) = - (1 * log(1) + 0 * log(0) + 0 * log(0))
 L(y, y´) = - (0 + 0 + 0)
 L(y, y´) = 0
 
+Since loss value in Sample 2(1.609) was more as compared to loss in sample 1 (0.510),
 Therefore above function serves our purpose of penalizing bad predictions more.
 If the probability associated with the true class is 1.0, we need its loss to be zero. 
 Conversely, if that probability is low, say, 0.01, we need its loss to be HUGE!
 ```
-
-### Inference
-To perform inference, you can execute the `classify.py` script
-before executing, you need to change the following lines in `classify.py`
-Line-8 in `classify.py`
-```
-filename = './image_to_be_classified.jpg'
-```
-Once you have made the change, you can perform classification using the command
-```
-python classify.py
-```
-The script first loads the image, resizes it to what model is expecting, perform 
-inference, as in doing a forward pass using the `predict` api of keras. 
-it will give us a vector of probabilites for each class. We fetch the index of class
-having maximum probability score using `numpy.argmax` and that becomes our predicted label/class.
-Next, we display the image along with the predicted label for visual purposes
