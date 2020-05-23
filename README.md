@@ -144,37 +144,35 @@ Next, we display the image along with the predicted label for visual purposes
 
 ### For curious readers, intution behind choosing categorical crossentropy loss during training
 Say we have classification problem with 3 classes: cat, dog, bird
-<br /><br />
+<br />
 
 Sample 1:
 for a sample image of cat, our ground truth vector will look like [1, 0, 0]
 Now, let’s assume vector our model predicted for that image is [0.6, 0.3, 0.1] 
-<br /><br />
+<br />
 
 Sample 2:
 for a sample image of cat, our ground truth vector will look like [1, 0, 0]
 Now, let’s assume vector our model predicted for that image is [0.2, 0.7, 0.1] 
-<br /><br />
+<br />
 
 Sample 3
 for another sample image of cat, our ground truth vector will look like [1, 0, 0]
 Now, let’s assume the vector our model predicted for that image is [1, 0, 0] 
-<br /><br />
-
 
 #### Requirement
 We want to penalise our model more in second sample since the predicted probability 
 for that class (0.2) is way lesser as compared to the prediction in first sample (0.6)
 hence loss should be more in case of sample 2 as compared to loss value in case of sample 1
-<br /><br />
+<br />
 
 In case of sample 3, since our model predicted exactly correct, we don’t want to penalise 
 our model at all.  Hence loss should be zero in this case.
-<br /><br />
+<br />
 
 Therefore, a cross-entropy of 0.0 when training a model indicates that the predicted class 
 probabilities are identical to the probabilities in the training dataset, e.g. zero loss.
-<br /><br />
+<br />
 
 Categorical cross entropy serves our above requirements. <br />
 Let's consider categorical cross-entropy function: <br />
