@@ -18,22 +18,22 @@ maximum probability becomes the predicted label for the image)
 The architecture has following layers:
 
 ```
-             Conv layer with Relu Activation and batch normalization
-             Pooling layer with Dropout
+             Conv layer with Relu Activation and batch normalization (32 filters of size 3x3)
+             Pooling layer with Dropout (pooling window of 2x2, stride 2)
                                   |
                                  \|/
-             Conv layer with Relu Activation and batch normalization
-             Conv layer with Relu Activation and batch normalization
-             Pooling layer with Dropout
+             Conv layer with Relu Activation and batch normalization (64 filters of size 3x3)
+             Conv layer with Relu Activation and batch normalization (64 filters of size 3x3)
+             Pooling layer with Dropout (pooling window of 2x2, stride 2)
                                   |
                                  \|/
-             Conv layer with Relu Activation and batch normalization
-             Conv layer with Relu Activation and batch normalization
-             Pooling layer with Dropout and flattened
+             Conv layer with Relu Activation and batch normalization (128 filters of size 3x3)
+             Conv layer with Relu Activation and batch normalization (128 filters of size 3x3)
+             Pooling layer with Dropout followed by flattened (pooling window of 2x2, stride 2)
                                   |
                                  \|/
-             Dense layer with RELU activation
-             Dense layer with nuerons = number of classes and softmax activation
+             Dense layer with RELU activation (1024 neurons)
+             Dense layer with number of nuerons = number of classes and softmax activation
 
 Detailed Network architecture looks like this:
 
