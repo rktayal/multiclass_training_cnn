@@ -224,3 +224,19 @@ where only one result can be correct. In other words, an example can belong to o
 The softmax function highlights the largest values and suppresses values which are 
 significantly below the maximum value, though this is not true for small values. 
 It normalizes the outputs so that they sum to 1 so that they can be directly treated as probabilities over the output.
+```
+Going back to our 3 class classification problem
+if we have final layer vector as [2.4, 1.0, 4.5] then
+applying softmax will return us vector of same dimension
+and the values will reflect the probabilites of each class. 
+The sum of all values will be 1. <br />
+Softmax function will supress values which are below the maximum value
+as mentioned above. <br />
+[2.4, 1.0, 4.5] ----Softmax function----> [0.12, 0.02, 0.86]
+hence output label becomes bird since index 3 has max probability. <br />
+
+```
+How it is calculated?
+[2.4, 1.0, 4.5] --> [y1, y2, y3]
+```
+
