@@ -205,4 +205,22 @@ Since loss value in Sample 2(1.609) was more as compared to loss in sample 1 (0.
 Therefore above function serves our purpose of penalizing bad predictions more.
 If the probability associated with the true class is 1.0, we need its loss to be zero. 
 Conversely, if that probability is low, say, 0.01, we need its loss to be HUGE!
+
+When log function is applied on values greater than 1, it acts like attenuator. 
+This property is hugely utilized in plotting data that has too huge range (say 20 to 30000). 
+Well in those situations, we simply plot the data on log-scale.
+
+When log function is applied to small values (smaller than 1), we see another useful behavior. 
+In that region, it acts like a negative magnifier.
+
+since the log of values between 0.0 and 1.0 is negative, 
+we take the negative log to obtain a positive value for the loss
 ```
+### Intution behind choosing softmax activation function for last layer
+Since our problem statement is a multi class classification problem meaning
+where only one result can be correct. In other words, an example can belong to one class only.
+<br />
+
+The softmax function highlights the largest values and suppresses values which are 
+significantly below the maximum value, though this is not true for small values. 
+It normalizes the outputs so that they sum to 1 so that they can be directly treated as probabilities over the output.
