@@ -146,7 +146,7 @@ Next, we display the image along with the predicted label for visual purposes
 ### For urious readers, intution behind choosing categorical crossentropy loss during training
 cross-entropy is a measure of the difference between two probability distributions
 In machine learning cross-entropy is used to guide our models to make better predictions 
-when the predictions involves predicting a class with some probability. <br />
+when the predictions involves predicting a class with some probability. <br /><br />
 Say we have classification problem with 3 classes: [cat, dog, bird]. 
 We have 3 images of cat. 
 The predicted and ground truth vectors for those images will look something like this:
@@ -159,7 +159,7 @@ Cat image 2:     [1, 0, 0]            [0.2, 0.7, 0.1]
 Cat image 3:     [1, 0, 0]            [1, 0, 0]
 ```
 
-In image 1, model predicted cat with probability 0.6
+In image 1, model predicted cat with probability 0.6 <br />
 In image 2, model predicted cat with probability 0.2
 
 #### Our Requirement
@@ -177,6 +177,8 @@ probabilities are identical to the probabilities in the training dataset, e.g. z
 <br />
 
 Categorical cross entropy serves our above requirements. <br />
+Input: two vectors usually one is ground truth vector and other is predicted vector from network. <br />
+Outputs: Real number (loss value) <br />
 Let's consider categorical cross-entropy function: <br />
 L(y, y´) = -∑ y * log(y´) (summation for all elements in vector, in our case 3) <br />
 where y is ground truth vector and y´ is predicted vector <br />
