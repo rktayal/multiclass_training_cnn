@@ -143,28 +143,26 @@ it will give us a vector of probabilites for each class. We fetch the index of c
 having maximum probability score using `numpy.argmax` and that becomes our predicted label/class.
 Next, we display the image along with the predicted label for visual purposes
 
-### For curious readers, intution behind choosing categorical crossentropy loss during training
-Say we have classification problem with 3 classes: [cat, dog, bird]
+### For urious readers, intution behind choosing categorical crossentropy loss during training
+cross-entropy is a measure of the difference between two probability distributions
+In machine learning cross-entropy is used to guide our models to make better predictions 
+when the predictions involves predicting a class with some probability. <br />
+Say we have classification problem with 3 classes: [cat, dog, bird]. 
+We have 3 images of cat. 
+The predicted and ground truth vectors for those images will look something like this:
 <br />
 
+```
              Ground Truth vector     Model Prediction
 Cat image 1:     [1, 0, 0]            [0.6, 0.3, 0.1]
 Cat image 2:     [1, 0, 0]            [0.2, 0.7, 0.1]
 Cat image 3:     [1, 0, 0]            [1, 0, 0]
+```
 
 In image 1, model predicted cat with probability 0.6
 In image 2, model predicted cat with probability 0.2
 
-Sample 2:
-for a sample image of cat, our ground truth vector will look like [1, 0, 0]
-Now, let’s assume vector our model predicted for that image is [0.2, 0.7, 0.1] 
-<br />
-
-Sample 3
-for another sample image of cat, our ground truth vector will look like [1, 0, 0]
-Now, let’s assume the vector our model predicted for that image is [1, 0, 0] 
-
-#### Requirement
+#### Our Requirement
 We want to penalise our model more in second sample since the predicted probability 
 for that class (0.2) is way lesser as compared to the prediction in first sample (0.6)
 hence loss should be more in case of sample 2 as compared to loss value in case of sample 1
